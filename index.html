@@ -16,6 +16,16 @@
       .shower {
         --slide-ratio: calc(16 / 9);
       }
+      table.query-results thead tr {
+          border: solid 1px gray;
+      }
+      table.query-results thead td {
+          font-weight: bold;
+          background-color: white;
+      }
+      table.query-results tbody tr {
+          border: solid 1px gray;
+      }
     </style>
   </head>
 
@@ -33,7 +43,7 @@
     </header>
 
     <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
-      <h2 property="schema:name">SPARQL Query Optimization: Basic Graph Patterns</h2>
+      <h2 property="schema:name" style="font-size: 2.9em">SPARQL Query Optimization: Basic Graph Patterns</h2>
       <ul class="author inline">
           <li class="current"><a href="https://www.rubensworks.net/">Ruben Taelman</a></li>
       </ul>
@@ -49,15 +59,17 @@
 	
     <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
       <ul>
-        <li><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
+        <li><a href="#index-rdf">RDF data model</a></li>
+		<li><a href="#index-sparql">SPARQL query language</a></li>
+        <li><a href="#index-optimization">SPARQL query optimization</a></li>
       </ul>
     </section>
     
-    <section id="index-a" class="slide index" inlist="" rel="schema:hasPart" resource="#index-a">
+    <section id="index-rdf" class="slide index" inlist="" rel="schema:hasPart" resource="#index-rdf">
       <ul>
-        <li class="current"><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
+        <li class="current"><a href="#index-rdf">RDF data model</a></li>
+		<li><a href="#index-sparql">SPARQL query language</a></li>
+        <li><a href="#index-optimization">SPARQL query optimization</a></li>
       </ul>
     </section>
 	
@@ -70,6 +82,30 @@
           </li>
           <li>B</li>
           <li>C</li>
+      </ul>
+    </section>
+    
+    <section id="index-sparql" class="slide index" inlist="" rel="schema:hasPart" resource="#index-sparql">
+      <ul>
+        <li><a href="#index-rdf">RDF data model</a></li>
+		<li class="current"><a href="#index-sparql">SPARQL query language</a></li>
+        <li><a href="#index-optimization">SPARQL query optimization</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-optimization" class="slide index" inlist="" rel="schema:hasPart" resource="#index-optimization">
+      <ul>
+        <li><a href="#index-rdf">RDF data model</a></li>
+		<li><a href="#index-sparql">SPARQL query language</a></li>
+        <li class="current"><a href="#index-optimization">SPARQL query optimization</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-final" class="slide index" inlist="" rel="schema:hasPart" resource="#index-final">
+      <ul>
+        <li><a href="#index-rdf">RDF data model</a></li>
+		<li><a href="#index-sparql">SPARQL query language</a></li>
+        <li><a href="#index-optimization">SPARQL query optimization</a></li>
       </ul>
     </section>
 	
