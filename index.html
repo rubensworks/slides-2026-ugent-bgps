@@ -26,6 +26,34 @@
       table.query-results tbody tr {
           border: solid 1px gray;
       }
+      
+      pre.sparql {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1em;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 18px;
+      }
+
+      /* Keywords */
+      .sparql-keyword { color: #569cd6; font-weight: bold; }
+
+      /* Variables */
+      .sparql-variable { color: #9cdcfe; }
+
+      /* Strings */
+      .sparql-string { color: #ce9178; }
+
+      /* Prefixed names */
+      .sparql-prefix { color: #4ec9b0; }
+
+      /* Functions */
+      .sparql-function { color: #c586c0; }
+
+      /* Comments */
+      .sparql-comment { color: #6a9955; font-style: italic; }
     </style>
   </head>
 
@@ -50,12 +78,15 @@
       <p class="affiliation"><a href="http://idlab.technology/">Ghent University – imec – IDLab, Belgium</a></p>
     </section>
 
-    <section id="start" class="slide" style="background-image: url('img/TODO.jpg')" inlist="" rel="schema:hasPart" resource="#start">
-        <h2 property="schema:name" class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">INTRO</h2>
+    <!--<section id="start" class="slide" style="background-image: url('img/network.jpg'); background-size: cover; box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6)">
+        <h2 class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">Storing data as Knowledge Graphs</h2>
         <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
-            <li>TODO</li>
+            <li class="next">Graph-based data model</li>
+            <li class="next"><p class="indent" style="font-style:italic">When data does not fit into a fixed relation model</p></li>
+            <li class="next">Based on Semantic Web and Linked Data technologies</li>
+            <li class="next"><p class="indent" style="font-style:italic">Interlinking data across multiple data sources</p></li>
         </ul>
-    </section>
+    </section>-->
 	
     <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
       <ul>
@@ -73,16 +104,49 @@
       </ul>
     </section>
 	
-    <section id="some-slide" class="slide" inlist="" rel="schema:hasPart" resource="#some-slide">
-      <h2 property="schema:name">TODO: A regular slide</h2>
+    <section id="rdf-specs" class="slide" inlist="" rel="schema:hasPart" resource="#rdf-specs">
+      <h2 property="schema:name">RDF for describing Knowledge Graphs</h2>
       <ul>
           <li>
-          	  <h3>A</h3>
-			  <span class="indent">TODO: Description</span>
+          	  <h3>RDF</h3>
+			  <span class="indent">Resource Description framework</span>
           </li>
-          <li>B</li>
-          <li>C</li>
+          <li>
+          	  <h3><a href="https://www.w3.org/TR/rdf10-concepts/">RDF 1.0</a></h3>
+			  <span class="indent">Recommended by W3C since 1999</span>
+          </li>
+          <li>
+          	  <h3><a href="https://www.w3.org/TR/rdf11-concepts/">RDF 1.1</a></h3>
+			  <span class="indent">Recommended by W3C since 2014</span>
+          </li>
+          <li>
+          	  <h3><a href="https://www.w3.org/TR/rdf12-concepts/">RDF 1.2</a></h3>
+			  <span class="indent">Upcoming in 2026</span>
+          </li>
       </ul>
+    </section>
+    
+    <section id="rdf-triple" class="slide" inlist="" rel="schema:hasPart" resource="#rdf-triple">
+      <h2 property="schema:name">Facts are represented as RDF triples</h2>
+      <center>
+          <img src="img/triple.svg" alt="RDF triple" width="900px" style="margin-top: 0px" /><br \>
+          <img src="img/triple-spo.svg" alt="RDF triple" width="900px"  style="margin-top: -350px" class="next" />
+      </center>
+    </section>
+    
+    <section id="rdf-triples" class="slide" inlist="" rel="schema:hasPart" resource="#rdf-triples">
+      <h2 property="schema:name">Multiple RDF triples form RDF datasets</h2>
+      <pre style="margin-top: 100px; margin-left: 200px; font-size: 1.5em">
+:Alice :knows :Bob .
+:Alice :knows :Carol .
+:Alice :name "Alice" .
+:Bob :name "Bob" .
+:Bob :knows :Carol .</pre>
+    </section>
+	
+    <section id="rdf-triples-figure" class="slide" inlist="" rel="schema:hasPart" resource="#rdf-triples-figure">
+      <h2 property="schema:name">Multiple RDF triples form RDF datasets</h2>
+	  <center><img src="img/graph-example.svg" width="580px" /></center>
     </section>
     
     <section id="index-sparql" class="slide index" inlist="" rel="schema:hasPart" resource="#index-sparql">
@@ -90,6 +154,74 @@
         <li><a href="#index-rdf">RDF data model</a></li>
 		<li class="current"><a href="#index-sparql">SPARQL query language</a></li>
         <li><a href="#index-optimization">SPARQL query optimization</a></li>
+      </ul>
+    </section>
+    
+    <section id="sparql-what" class="slide" inlist="" rel="schema:hasPart" resource="#sparql-what">
+        <h2 property="schema:name">SPARQL querying over RDF datasets</h2>
+        <ul>
+            <li><strong>SPARQL</strong>: language to read and update RDF datasets via <em>declarative queries</em>.</li>
+            <li>
+                Different query forms:<br /><br />
+                <ul>
+                    <li><code>SELECT</code>: selecting values in tabular form</li>
+                    <li><code>CONSTRUCT</code>: construct new triples</li>
+                    <li>&mldr;</li>
+                </ul>
+            </li>
+        </ul>
+        <p>SPARQL 1.1: <a href="https://www.w3.org/TR/sparql-query/">https://www.w3.org/TR/sparql-query/</a></p>
+        <p>SPARQL 1.2: Upcoming in 2026</p>
+    </section>
+    
+    <section id="example" class="slide" inlist="" rel="schema:hasPart" resource="#example" style="font-size: 0.9em">
+        <h2 property="schema:name">Find all artists born in York</h2>
+        <ul>
+            <li><pre class="sparql">SELECT ?name ?deathDate WHERE {
+  ?person a dbpedia-owl:Artist;
+          rdfs:label ?name;
+          dbpedia-owl:birthPlace ?birthPlace.
+  ?birthPlace rdfs:label "York"@en.
+  FILTER LANGMATCHES(LANG(?name),  "EN")
+  OPTIONAL { ?person dbpprop:dateOfDeath ?deathDate. }
+}
+</pre></li>
+        </ul>
+        <table class="next query-results">
+            <thead>
+                <tr><td>name</td><td>deathDate</td></tr>
+            </thead>
+            <tbody>
+                <tr><td>Albert Joseph Moore</td><td></td></tr>
+                <tr><td>Charles Francis Hansom</td><td>1888</td></tr>
+                <tr><td>David Reed (comedian)</td><td></td></tr>
+                <tr><td>Dustin Gee</td><td></td></tr>
+                <tr><td>E Ridsdale Tate</td><td>1922</td></tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section id="basic-graph-patterns" class="slide" inlist="" rel="schema:hasPart" resource="#basic-graph-patterns">
+      <h2 property="schema:name">Basic Graph Patterns enable graph pattern matching</h2>
+      <ul>
+          <li>
+          	  <h3>Basic Graph Pattern (BGP)</h3>
+			  <span class="indent">A collection of <em>triple patterns</em>.</span>
+          </li>
+          <li>
+<pre style="font-size: 0.8em">    ?person a dbpedia-owl:Artist.
+    ?person rdfs:label ?name.
+    ?person dbpedia-owl:birthPlace ?birthPlace.
+</pre></li>
+          <li>
+          	  <h3>Triple Pattern</h3>
+			  <span class="indent">A triple in which any component may be a variable.</span><br />
+			  <span class="indent">Variables start with <code>?</code>, followed by a <em>label</em>. (e.g. <code>?name</code>)</span>
+          </li>
+          <li>
+          	  <h3>More complex operators are possible</h3>
+    		  <span class="indent"><code>OPTIONAL</code>, <code>UNION</code>, <code>FILTER</code>, ...</span>
+          </li>
       </ul>
     </section>
     
@@ -101,6 +233,127 @@
       </ul>
     </section>
     
+    <section id="optimization-types" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-types">
+      <h2 property="schema:name">Why is optimization needed?</h2>
+      <ul>
+          <li>
+          	  <h3>Queries are declarative</h3>
+			  <span class="indent">They say <em>what</em> needs to be done, not <em>how</em>.</span><br /><br />
+              <span class="indent">Transformation into executable code can happen in many different ways.</span><br />
+              <span class="indent">&rarr; query plans</span>
+          </li>
+          <li>
+          	  <h3>Factors that influence performance</h3>
+              <span class="indent">Dataset</span><br /><br />
+              <span class="indent">Available data indexes</span><br /><br />
+			  <span class="indent">Order of operators</span><br /><br />
+              <span class="indent">Available operator algorithm implementations</span><br /><br />
+          </li>
+      </ul>
+    </section>
+    
+    <section id="optimization-lowlevel-joinorder" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-lowlevel-joinorder">
+      <h2 property="schema:name">Example: query optimization for a BGP</h2>
+      <h3>How, and in what order should triple patterns be executed?</h3>
+      <p>
+          1. <code>?person a dbpedia-owl:Artist.</code>
+      </p>
+      <p>
+          2. <code>?person rdfs:label ?name.</code>
+      </p>
+      <p>
+          3. <code>?person dbpedia-owl:birthPlace ?birthPlace.</code>
+      </p>
+    </section>
+    
+    <section id="optimization-lowlevel-joinorder-factors" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-lowlevel-factors">
+      <h2 property="schema:name">Different factors influence query plan</h2>
+      <ul>
+          <li>
+          	  <h3>Cardinality of each pattern</h3>
+              <span class="indent">Can be exact, or an estimate</span>
+          </li>
+          <li>
+          	  <h3>Complexity of join algorithms</h3>
+              <span class="indent">Based on cardinalities of patterns</span>
+          </li>
+          <li>
+          	  <h3>Precomputing steps of join algorithms</h3>
+              <span class="indent">Precomputation may be too expensive for low cardinalities</span>
+          </li>
+          <li>
+          	  <h3>Restrictions of join algorithms</h3>
+              <span class="indent">Some algorithms only work in certain cases</span>
+          </li>
+          <!--<li>
+          	  <h3>Join cardinality statistics of patterns</h3>
+              <span class="indent">Statistics on intermediate results when joining two patterns</span><br />
+              <span class="indent"><em>Difficult to store and manage!</em></span>
+          </li>-->
+      </ul>
+    </section>
+    
+    <section id="optimization-lowlevel-joinorder-cardinality" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-lowlevel-cardinality">
+      <h2 property="schema:name">Obtain cardinality of each pattern</h2>
+      <p>
+          1. <code>?person a dbpedia-owl:Artist.</code>
+          <span style="font-weight: bold; float: right">200</span>
+      </p>
+      <p>
+          2. <code>?person rdfs:label ?name.</code>
+          <span style="font-weight: bold; float: right">10.000</span>
+      </p>
+      <p>
+          3. <code>?person dbpedia-owl:birthPlace ?birthPlace.</code>
+          <span style="font-weight: bold; float: right">1.000</span>
+      </p>
+      <h3>Can be pre-computed, or estimated at runtime.</h3>
+    </section>
+    
+    <section id="optimization-lowlevel-joinorder-algorithms" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-lowlevel-algorithms" style="font-size: 0.85em">
+      <h2 property="schema:name">Select appropriate join algorithms</h2>
+      <em>Usually happens in pairs of two operators (<code>n</code>, <code>m</code>)</em>
+      <ul>
+          <li>
+          	  <h3>Nested-loop join</h3>
+			  <span class="indent">Double for-loop &rarr; <code>O(n*m)</code></span><br />
+              <span class="indent">Works well for small sequences due to the lack of preprocessing.</span>
+          </li>
+          <li>
+          	  <h3>Hash join</h3>
+			  <span class="indent">Precomputes hash tables for all mappings in one solution sequence.</span><br />
+              <span class="indent">Iterates over other solution sequence with lookups to hash table &rarr; <code>O(n+m)</code></span><br />
+              <span class="indent">Not possible with <code>OPTIONAL</code></span>
+          </li>
+          <li>
+          	  <h3>Sort-merge join</h3>
+			  <span class="indent">Sort solution sequences.</span><br />
+              <span class="indent">Iterates over both solution sequences in order &rarr; <code>O(n+m)</code></span><br />
+              <span class="indent">Sorting can become expensive with larger solution sequences</span>
+          </li>
+      </ul>
+    </section>
+    
+    <section id="optimization-lowlevel-joinorder-order" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-lowlevel-order" style="font-size: 0.9em">
+      <h2 property="schema:name">Join orders and algorithms influence worst-case complexity</h2>
+      <ul>
+          <li>
+          	  <h3>All nested-loop join</h3>
+              <span class="indent"><code>((1 ⋈ 2) ⋈ 3) = ((200 * 10.000) * 1.000) = 2.000.000.000</code></span>
+          </li>
+          <li>
+          	  <h3>All hash join</h3>
+              <span class="indent"><code>((1 ⋈ 2) ⋈ 3) = ((200 + 10.000) + 1.000) = 11.200</code></span>
+          </li>
+          <li>
+          	  <h3>Nested-loop join and hash join</h3>
+              <span class="indent"><code>((1 ⋈ 3) ⋈ 2) = ((200 * 1.000) + 10.000) = 210.000</code></span>
+          </li>
+      </ul>
+      <p>&rarr; Restrictions and preprocessing steps (sorting, hashing, ...) not yet taken into account</p>
+      <p>&rarr; Trade-off between different factors that influence join order</p>
+    </section>
+    
     <section id="index-final" class="slide index" inlist="" rel="schema:hasPart" resource="#index-final">
       <ul>
         <li><a href="#index-rdf">RDF data model</a></li>
@@ -110,7 +363,21 @@
     </section>
 	
     <section id="conclusion" class="slide" inlist="" rel="schema:hasPart" resource="#conclusion">
-      <h2 property="schema:name" class="big">TODO: Conclusion</h2>
+      <h2 property="schema:name">Conclusions</h2>
+      <ul>
+          <li>
+          	  <h3>Basic Graph Patterns (BGPs): foundational building block for SPARQL</h3>
+			  <span class="indent">They enable graph pattern matching over RDF datasets</span>
+          </li>
+          <li>
+          	  <h3>SPARQL is a declarative query language</h3>
+			  <span class="indent">Different query plans are possible for the same query</span>
+          </li>
+          <li>
+          	  <h3>Query optimization is crucial for performance</h3>
+			  <span class="indent">Identifies the query plan with the lowest cost</span>
+          </li>
+      </ul>
     </section>
 
     <footer>
@@ -122,5 +389,38 @@
     </footer>
 
     <script src="node_modules/shower-core/shower.min.js"></script>
+    <script>
+    function highlightSPARQL(code) {
+      return code
+        // Escape HTML first
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+
+        // Comments
+        .replace(/(#.*)/g, '<span class="sparql-comment">$1</span>')
+
+        // Strings with optional language tag
+        .replace(/(".*?"(@[a-zA-Z-]+)?)/g,
+          '<span class="sparql-string">$1</span>')
+
+        // Variables
+        .replace(/(\?[a-zA-Z_][a-zA-Z0-9_]*)/g,
+          '<span class="sparql-variable">$1</span>')
+
+        // Prefixed names (e.g., dbpedia-owl:Artist)
+        .replace(/([a-zA-Z_-]+:[a-zA-Z_-]+)/g,
+          '<span class="sparql-prefix">$1</span>')
+
+        // Keywords
+        .replace(/\b(SELECT|WHERE|FILTER|OPTIONAL|LANGMATCHES|LANG|a)\b/g,
+          '<span class="sparql-keyword">$1</span>');
+    }
+
+    document.querySelectorAll("pre.sparql").forEach(block => {
+        console.log(block);
+      block.innerHTML = highlightSPARQL(block.textContent);
+    });
+    </script>
   </body>
 </html>
