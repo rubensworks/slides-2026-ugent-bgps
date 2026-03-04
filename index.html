@@ -233,6 +233,24 @@
       </ul>
     </section>
     
+    <section id="basics-steps" class="slide" inlist="" rel="schema:hasPart" resource="#basics-steps">
+      <h2 property="schema:name">Steps in SPARQL query processing</h2>
+      <ul>
+          <li>
+          	  <h3>1. Parsing</h3>
+			  <span class="indent">Transform a SPARQL query string into an algebra expression</span>
+          </li>
+          <li>
+          	  <h3>2. Optimization</h3>
+			  <span class="indent">Transform algebra expression into a query plan<strong class="next"> &rarr; Our focus</strong></span>
+          </li>
+          <li>
+          	  <h3>3. Evaluation</h3>
+			  <span class="indent">Executes query plan to obtain query results</span>
+          </li>
+      </ul>
+    </section>
+    
     <section id="optimization-types" class="slide" inlist="" rel="schema:hasPart" resource="#optimization-types">
       <h2 property="schema:name">Why is optimization needed?</h2>
       <ul>
