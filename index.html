@@ -79,6 +79,7 @@
     </section>
 
     <section id="start" class="slide" style="background-image: url('img/network.jpg'); background-size: cover; box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6)">
+        <!-- KGs offer a way of storing data that makes it easy to interlink entities -->
         <h2 class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">Knowledge Graphs interlink entities</h2>
         <!--<div style="float:right"><img src="img/wikidata.png" width="150px" \></div>-->
         <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
@@ -329,19 +330,19 @@
           <li>
           	  <h3>Nested-loop join</h3>
 			  <span class="indent">Double for-loop &rarr; <code>O(n*m)</code></span><br />
-              <span class="indent">Works well for small sequences due to the lack of preprocessing.</span>
+              <span class="indent">Works well for small triple patterns due to the lack of preprocessing.</span>
           </li>
           <li>
           	  <h3>Hash join</h3>
-			  <span class="indent">Precomputes hash tables for all mappings in one solution sequence.</span><br />
-              <span class="indent">Iterates over other solution sequence with lookups to hash table &rarr; <code>O(n+m)</code></span><br />
+			  <span class="indent">Precomputes hash tables for all mappings in one triple patterns.</span><br />
+              <span class="indent">Iterates over other triple patternss with lookups to hash table &rarr; <code>O(n+m)</code></span><br />
               <span class="indent">Not possible with <code>OPTIONAL</code></span>
           </li>
           <li>
           	  <h3>Sort-merge join</h3>
-			  <span class="indent">Sort solution sequences.</span><br />
-              <span class="indent">Iterates over both solution sequences in order &rarr; <code>O(n+m)</code></span><br />
-              <span class="indent">Sorting can become expensive with larger solution sequences</span>
+			  <span class="indent">Sorted triple patterns.</span><br />
+              <span class="indent">Iterates over both triple patterns in order &rarr; <code>O(n+m)</code></span><br />
+              <span class="indent">Sorting can become expensive with larger triple patterns</span>
           </li>
       </ul>
     </section>
